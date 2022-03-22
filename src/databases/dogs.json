@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Hercules",
+    "breed": "Shiba Inu",
+    "birthYear": 2013,
+    "photo": "https://some.url/dogs/1"
+  },
+  {
+    "id": 2,
+    "name": "Pavel",
+    "breed": "Chau chau",
+    "birthYear": 2010,
+    "photo": "https://some.url/dogs/2"
+  },
+  {
+    "id": 3,
+    "name": "Pongo",
+    "breed": "Akita Inu",
+    "birthYear": 2011,
+    "photo": "https://some.url/dogs/3"
+  }
+]

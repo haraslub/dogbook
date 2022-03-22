@@ -1,0 +1,41 @@
+{
+  "name": "04-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "lint": "node_modules/.bin/eslint ./",
+    "dev": "nodemon src/app.js | pino-pretty",
+    "infra": "docker-compose up -d",
+    "infra:stop": "docker-compose down",
+    "migrate": "NODE_ENV=local npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
+    "down": "NODE_ENV=local npx knex migrate:down --knexfile ./src/databases/knexfile.js",
+    "seed": "NODE_ENV=local npx knex seed:run --knexfile ./src/databases/knexfile.js"
+  },
+  "author": "haraslub",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "jsonschema": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "knex": "^1.0.4",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-compress": "^5.1.0",
+    "koa-router": "^10.1.1",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3",
+    "ramda": "^0.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "pino": "^7.8.0",
+    "pino-pretty": "^7.5.3"
+  }
+}

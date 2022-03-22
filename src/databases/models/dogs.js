@@ -1,0 +1,42 @@
+'use strict'
+
+const Base = require('./base')
+
+class Dog extends Base {
+  static get tableName() {
+    return 'dogs'
+  }
+
+  static get jsonSchema() {
+    return {
+      type: 'Object',
+      required: [
+        'name',
+        'bread',
+        'birthYear',  
+      ],
+      properties: {
+        id: {
+          type: 'integer',
+        },
+        name: {
+          type: 'string',
+        }, 
+        breed: {
+          type: 'string',
+        },
+        birthYear: {
+          type: 'integer',
+        }, 
+        photo: {
+          type: 'string',
+        },
+        userId: {
+          type: 'integer',
+        }
+      }
+    }
+  }
+}
+
+module.exports = Dog
