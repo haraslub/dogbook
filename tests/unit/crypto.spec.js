@@ -1,15 +1,16 @@
 'use strict'
 
-const assert = require('assert')
+// const assert = require('assert')
+const { expect } = require('chai')
 const { generateAccessToken, verifyAccessToken } = require('../../src/utils/crypto')
 
 describe('Crypto', () => {
   it('generateAccessToken', async () => {
-    const token = await generateAccessToken(2)
+    const userId = 2
+    const token = await generateAccessToken(userId)
     const payload = await verifyAccessToken(token)
-    
-    console.log(payload)
 
-    assert.strictEqual(2, payload.userId)
+    // assert.strictEqual(2, payload.userId)
+    expect(payload).to.deep.include({ userId })
   })
 })
