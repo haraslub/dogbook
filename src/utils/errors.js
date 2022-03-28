@@ -5,23 +5,23 @@
 const logger = require('./logger')
 
 class AppError extends Error {
-	constructor(message, type, status) {
-		super()
-		Error.captureStackTrace(this, this.constructor)
-		this.name = this.constructor.name
-		this.type = type
-		this.message = message
-		this.status = status
-		const stack = this.stack ? this.stack.split('\n') : this.stack
-		logger.error({
-			error: {
-				name: this.name,
-				message: this.message,
-				type,
-				stack: stack && stack.length > 2 ? `${stack[0]}  ${stack[1]}` : stack,
-			},
-		})
-	}
+  constructor(message, type, status) {
+    super()
+    Error.captureStackTrace(this, this.constructor)
+    this.name = this.constructor.name
+    this.type = type
+    this.message = message
+    this.status = status
+    const stack = this.stack ? this.stack.split('\n') : this.stack
+    logger.error({
+      error: {
+        name: this.name,
+        message: this.message,
+        type,
+        stack: stack && stack.length > 2 ? `${stack[0]}  ${stack[1]}` : stack,
+      },
+    })
+  }
 }
 
 /**
@@ -35,10 +35,10 @@ class AppError extends Error {
  *    }
  */
 class ValidationError extends AppError {
-	constructor(message, errors) {
-		super(message || 'Invalid or missing request data.', 'BAD_REQUEST', 400)
-		this.errors = errors
-	}
+  constructor(message, errors) {
+    super(message || 'Invalid or missing request data.', 'BAD_REQUEST', 400)
+    this.errors = errors
+  }
 }
 
 /**
@@ -52,13 +52,13 @@ class ValidationError extends AppError {
  *    }
  */
 class NotFoundError extends AppError {
-	constructor(message) {
-		super(
-			message || 'Resource not found.',
-			'NOT_FOUND',
-			404,
-		)
-	}
+  constructor(message) {
+    super(
+      message || 'Resource not found.',
+      'NOT_FOUND',
+      404,
+    )
+  }
 }
 
 /**
@@ -72,9 +72,9 @@ class NotFoundError extends AppError {
  *    }
  */
 class UnauthorizedError extends AppError {
-	constructor(message) {
-		super(message || 'Site access denied.', 'UNAUTHORIZED', 401)
-	}
+  constructor(message) {
+    super(message || 'Site access denied.', 'UNAUTHORIZED', 401)
+  }
 }
 
 /**
@@ -88,9 +88,9 @@ class UnauthorizedError extends AppError {
  *    }
  */
 class IdleTimeoutError extends AppError {
-	constructor(message) {
-		super(message || 'Site access denied.', 'IDLE_TIMEOUT', 401)
-	}
+  constructor(message) {
+    super(message || 'Site access denied.', 'IDLE_TIMEOUT', 401)
+  }
 }
 
 /**
@@ -104,13 +104,13 @@ class IdleTimeoutError extends AppError {
  *    }
  */
 class ConflictError extends AppError {
-	constructor(message) {
-		super(
-			message || 'The request could not be completed due to a conflict with the current state of the resource.',
-			'CONFLICT',
-			409,
-		)
-	}
+  constructor(message) {
+    super(
+      message || 'The request could not be completed due to a conflict with the current state of the resource.',
+      'CONFLICT',
+      409,
+    )
+  }
 }
 
 /**
@@ -124,21 +124,21 @@ class ConflictError extends AppError {
  *    }
  */
 class InternalServerError extends AppError {
-	constructor(message) {
-		super(
-			message || 'Something went wrong. Please try again later or contact support.',
-			'INTERNAL_SERVER',
-			500,
-		)
-	}
+  constructor(message) {
+    super(
+      message || 'Something went wrong. Please try again later or contact support.',
+      'INTERNAL_SERVER',
+      500,
+    )
+  }
 }
 
 module.exports = {
-	AppError,
-	ValidationError,
-	NotFoundError,
-	UnauthorizedError,
-	IdleTimeoutError,
-	ConflictError,
-	InternalServerError,
+  AppError,
+  ValidationError,
+  NotFoundError,
+  UnauthorizedError,
+  IdleTimeoutError,
+  ConflictError,
+  InternalServerError,
 }

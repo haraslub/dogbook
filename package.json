@@ -1,18 +1,20 @@
 {
-  "name": "04-architecture",
+  "name": "dogbook",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=local npx mocha --config ./tests/.mocharc.yaml ./tests",
+    "test:coverage": "NODE_ENV=local npx nyc mocha --config ./tests/.mocharc.yaml ./tests",
     "start": "node src/app.js",
     "lint": "node_modules/.bin/eslint ./",
     "dev": "nodemon src/app.js | pino-pretty",
     "infra": "docker-compose up -d",
     "infra:stop": "docker-compose down",
-    "migrate": "NODE_ENV=local npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
-    "down": "NODE_ENV=local npx knex migrate:down --knexfile ./src/databases/knexfile.js",
-    "seed": "NODE_ENV=local npx knex seed:run --knexfile ./src/databases/knexfile.js"
+    "db:migrate": "NODE_ENV=local npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
+    "db:rollback": "NODE_ENV=local npx knex migrate:rollback --knexfile ./src/databases/knexfile.js",
+    "db:down": "NODE_ENV=local npx knex migrate:down --knexfile ./src/databases/knexfile.js",
+    "db:seed": "NODE_ENV=local npx knex seed:run --knexfile ./src/databases/knexfile.js"
   },
   "author": "haraslub",
   "license": "ISC",
@@ -34,8 +36,12 @@
     "ramda": "^0.28.0"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
+    "nyc": "^15.1.0",
     "pino": "^7.8.0",
-    "pino-pretty": "^7.5.3"
+    "pino-pretty": "^7.5.3",
+    "supertest-koa-agent": "^0.3.2"
   }
 }
