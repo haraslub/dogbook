@@ -28,7 +28,7 @@ async function signUp(input) {
     throw new errors.ConflictError('User already exists.')
   }
 
-  const newUser = userRepository.create(user)
+  const newUser = await userRepository.create(user)
   newUser.accessToken = await crypto.generateAccessToken(newUser.id)
 
   log.info(`signUp of the user: "${input.name}" was successful.`)

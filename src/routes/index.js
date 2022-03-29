@@ -14,7 +14,7 @@ router.post('/users/login', users.logIn)
 
 router.get('/dogs', authenticate, dogs.getAll)
 router.get('/dogs/:id', authenticate, dogs.getById)
-router.get('/dogs', authenticate, dogs.createDog)
+router.post('/dogs', authenticate, dogs.createDog)
 
 router.use(handleNotFound)
 

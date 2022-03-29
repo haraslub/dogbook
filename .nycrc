@@ -11,6 +11,7 @@
   "exclude": [
     "src/config",
     "src/app.js",
+    "src/test.js",
     "src/database/migrations/*"
   ]
 }

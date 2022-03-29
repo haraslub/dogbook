@@ -1,6 +1,6 @@
 'use strict'
 
-const { validate } = require('../validations/index')
+const { validate } = require('./../validations/index')
 const operations = require('../operations/users')
 const schemas = require('../validations/schemas/users')
 

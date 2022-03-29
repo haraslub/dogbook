@@ -1,8 +1,6 @@
 'use strict'
 
-const R = require('ramda')
 const errors = require('../utils/errors')
-const dogs = require('./../databases/dogs')
 const { Dog } = require('../databases/models')
 
 function getAll() {

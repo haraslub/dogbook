@@ -3,19 +3,19 @@
 const dogRepository = require('./../repositories/dogs')
 
 function getAll() {
-	return dogRepository.getAll()
+  return dogRepository.getAll()
 }
 
 function getById(input) {
-	return dogRepository.findById(input.id)
+  return dogRepository.findById(input.id)
 }
 
 function createDog(input) {
-	return dogRepository.create(input)
+  return dogRepository.createDog(input)
 }
 
 module.exports = {
-	getAll,
-	getById,
-	createDog,
+  getAll,
+  getById,
+  createDog,
 }
