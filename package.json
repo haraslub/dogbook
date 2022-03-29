@@ -31,6 +31,7 @@
     "koa-body": "^4.2.0",
     "koa-compress": "^5.1.0",
     "koa-router": "^10.1.1",
+    "node-fetch": "^2.6.7",
     "objection": "^3.0.1",
     "pg": "^8.7.3",
     "ramda": "^0.28.0"
@@ -42,6 +43,7 @@
     "nyc": "^15.1.0",
     "pino": "^7.8.0",
     "pino-pretty": "^7.5.3",
+    "sinon": "^13.0.1",
     "supertest-koa-agent": "^0.3.2"
   }
 }

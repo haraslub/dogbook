@@ -2,10 +2,13 @@
 
 const { expect } = require('chai')
 const request = require('supertest-koa-agent')
+const sinon = require('sinon')
 
 const app = require('../../../src/app')
 const { resetDb } = require('../../helpers')
-const userRepository = require('../../../src/repositories/users')
+const dogApi = require('../../../src/services/dogApi')
+
+const sandbox = sinon.createSandbox()
 
 describe('Dogs', () => {
 
@@ -15,7 +18,7 @@ describe('Dogs', () => {
     name: 'Lubos',
     email: 'lubos@example.com',
   }
-  console.log('\ndb reset successful')
+  // console.log('\ndb reset successful')
 
   context('POST /dogs', () => {
 
@@ -31,17 +34,23 @@ describe('Dogs', () => {
         .expect(201)
 
       userToken = res.body.accessToken
-
-      console.log(`\nCreating user successful\nJWT token ${userToken}`)
+      
+      sandbox.stub(dogApi, 'getRandomBreedImage').returns(Promise.resolve('https://mydogapi.io/breed/random'))
+      // console.log(`\nCreating user successful\nJWT token ${userToken}`)
     })
 
-    const dogData = {
-      name: 'Azor',
-      breed: 'chihuahua',
-      birthYear: 2000,
-    }
+    afterEach(() => sandbox.restore())
 
     it('responds with newly created dog', async () => {
+
+      const dogData = {
+        name: 'Azor',
+        breed: 'chihuahua',
+        birthYear: 2000,
+      }
+
+      sinon.mock(dogApi)
+      
       const res = await request(app)
         .post('/dogs')
         .set('Authorization', `jwt ${userToken}`)
@@ -55,6 +64,9 @@ describe('Dogs', () => {
       expect(res.body).to.deep.include({
         ...dogData,
       })
+
+      expect(res.body.photo).to.be.a('string')
+      expect(res.body.photo).to.not.be.empty
  
       expect(res.body).to.have.all.keys([
         'name',
@@ -66,6 +78,28 @@ describe('Dogs', () => {
         'photo',
         'id',
       ])
+    })
+
+    it('spy the dogApi', async () => {
+      sandbox.restore()
+
+      let spy = sinon.spy(dogApi, 'getRandomBreedImage')
+
+      const dogData = {
+        name: 'Azor',
+        breed: 'chihuahua',
+        birthYear: 2000,
+      }
+
+      const res = await request(app)
+        .post('/dogs')
+        .set('Authorization', `jwt ${userToken}`)
+        .send({
+          ...dogData,
+        })
+        .expect(201)
+      
+      expect(spy.calledOnce).to.be.true
     })
   })
 })
