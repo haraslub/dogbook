@@ -20,6 +20,7 @@ async function findByEmail(email) {
   const user = await User.query().where('email', email).first()
 	
   if (!user) throw new errors.NotFoundError()
+
   return user
 }
 
@@ -39,11 +40,22 @@ async function create(attributes) {
   return user
 }
 
+async function updateUser(userId, attributes) {
+  
+  if (!attributes || !userId) throw new errors.BadRequest('Missing required values')
+  
+  const updatedUser = await User.query()
+    .patchAndFetchById(parseInt(userId), attributes)
+  
+  return updatedUser
+}
+
 module.exports = {
   findAll,
   findById,
   findByEmail,
   create,
+  updateUser,
 }
 
 // const users = require('../databases/users')

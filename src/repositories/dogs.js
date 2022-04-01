@@ -11,7 +11,7 @@ async function findById(id) {
   const dog = await Dog.query().findById(id)
 
   if (!dog) {
-    throw new errors.NotFoundError()
+    throw new errors.NotFoundError('Dog has not been found.')
   }
   return dog
 }

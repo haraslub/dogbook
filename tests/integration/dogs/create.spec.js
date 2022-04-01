@@ -5,6 +5,7 @@ const request = require('supertest-koa-agent')
 const sinon = require('sinon')
 
 const app = require('../../../src/app')
+const dogsRepo = require('../../../src/repositories/dogs')
 const { resetDb } = require('../../helpers')
 const dogApi = require('../../../src/services/dogApi')
 
@@ -41,7 +42,7 @@ describe('Dogs', () => {
 
     afterEach(() => sandbox.restore())
 
-    it('responds with newly created dog', async () => {
+    it('responds with newly created dog + test getters', async () => {
 
       const dogData = {
         name: 'Azor',
@@ -78,7 +79,21 @@ describe('Dogs', () => {
         'photo',
         'id',
       ])
+
+      const allDogs = await dogsRepo.getAll()
+      expect(allDogs.length).to.be.equal(1)
+
+      const dog = await dogsRepo.findById(1)
+      expect(dog.name).to.be.equal(dogData.name)
+
+      try {
+        await dogsRepo.findById(2)
+      } catch (err) {
+        expect(err.name).to.equal('NotFoundError')
+        expect(err.message).to.equal('Dog has not been found.')
+      }
     })
+
 
     it('spy the dogApi', async () => {
       sandbox.restore()
