@@ -12,6 +12,7 @@
     "infra": "docker-compose up -d",
     "infra:stop": "docker-compose down",
     "db:migrate": "NODE_ENV=local npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
+    "db:migrate:deploy": "npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
     "db:rollback": "NODE_ENV=local npx knex migrate:rollback --knexfile ./src/databases/knexfile.js",
     "db:down": "NODE_ENV=local npx knex migrate:down --knexfile ./src/databases/knexfile.js",
     "db:seed": "NODE_ENV=local npx knex seed:run --knexfile ./src/databases/knexfile.js"
