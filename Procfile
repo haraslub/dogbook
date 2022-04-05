@@ -1,2 +1,2 @@
 web: node src/app.js
-release: npm db:migrate
+release: npm run db:migrate
