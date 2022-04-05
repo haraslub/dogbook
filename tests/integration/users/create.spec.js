@@ -41,6 +41,7 @@ describe('POST /users', () => {
       'createdAt',
       'updatedAt',
       'id',
+      'accessToken'
     ])
   })
 

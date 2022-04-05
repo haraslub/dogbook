@@ -9,10 +9,10 @@ class Dog extends Base {
 
   static get jsonSchema() {
     return {
-      type: 'Object',
+      type: 'object',
       required: [
         'name',
-        'bread',
+        'breed',
         'birthYear',  
       ],
       properties: {

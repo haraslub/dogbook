@@ -1,8 +1,6 @@
 'use strict'
 
-const R = require('ramda')
 const errors = require('../utils/errors')
-const dogs = require('./../databases/dogs')
 const { Dog } = require('../databases/models')
 
 function getAll() {
@@ -13,7 +11,7 @@ async function findById(id) {
   const dog = await Dog.query().findById(id)
 
   if (!dog) {
-    throw new errors.NotFoundError()
+    throw new errors.NotFoundError('Dog has not been found.')
   }
   return dog
 }

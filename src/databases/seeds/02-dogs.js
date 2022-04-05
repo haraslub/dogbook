@@ -12,7 +12,7 @@ exports.seed = async function(knex) {
   for (const item of dogs) {
     await knex('dogs').insert([
       {
-        id: item.id,
+        // id: item.id,
         name: item.name,
         breed: item.breed,
         birth_year: item.birthYear,

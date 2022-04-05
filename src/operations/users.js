@@ -21,14 +21,14 @@ async function signUp(input) {
   try {
     alreadyExists = await userRepository.findByEmail(user.email)
   } catch(err) {
-    if (!(err instanceof errors.NotFoundError)) { throw err }
+    if (!(err instanceof errors.NotFoundError)) { throw new err }
   }
 
   if (alreadyExists) {
     throw new errors.ConflictError('User already exists.')
   }
 
-  const newUser = userRepository.create(user)
+  const newUser = await userRepository.create(user)
   newUser.accessToken = await crypto.generateAccessToken(newUser.id)
 
   log.info(`signUp of the user: "${input.name}" was successful.`)
@@ -44,9 +44,14 @@ async function logIn(input) {
     password: input.password,
   }
 
-  const existingUser = await userRepository.findByEmail(user.email)
-  if (!existingUser) {
-    throw new errors.ConflictError('User does not exist.')
+  let existingUser
+
+  try {
+    existingUser = await userRepository.findByEmail(user.email)
+  } catch(err) {
+    if (err instanceof errors.NotFoundError) {
+      throw new errors.NotFoundError('User does not exist.')
+    }   
   }
 
   const cipheredPassword = existingUser.password
@@ -57,33 +62,35 @@ async function logIn(input) {
   }
 
   existingUser.accessToken = await crypto.generateAccessToken(existingUser.id)
+
   log.info(`logIn of "${existingUser.name}" successful`)
 
   return existingUser
 }
 
-// input is accessToken (i.e. jwtToken)
 async function verifyTokenPayload(input) {
   // do not use logging of sensitive data in production!!! 
   log.info({ input }, 'verifyTokenPayload')
-
+  
+  const jwtToken = input.jwtToken || input.accessToken // not ideal
   // check if payload exists and login timeout has not expired yet
-  const jwtPayload = await crypto.verifyAccessToken(input.jwtToken)
+  const jwtPayload = await crypto.verifyAccessToken(jwtToken)
   const now = Date.now() // in mil seconds
 
   if (!jwtPayload || !jwtPayload.exp || now >= (jwtPayload.exp * 1000)) {
-    throw new errors.UnauthorizedError()
+    throw new errors.UnauthorizedError('jwtPayload')
   }
 
   // check if user is in databases and is not disabled
-  const userId = parseInt(jwtPayload.userId)
-  const user = userRepository.findById(userId)
+  const userId = await parseInt(jwtPayload.userId)
+  const user = await userRepository.findById(userId)
+
   if (!user || user.disabled) {
-    throw new errors.UnauthorizedError()
+    throw new errors.UnauthorizedError('User does not exists or has been disabled.')
   }
 
-  // return user and loginTimeout
   log.info('verifyTokenPayload successful')
+
   return {
     user,
     loginTimeout : jwtPayload.exp * 1000,
