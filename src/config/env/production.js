@@ -1,12 +1,12 @@
 'use strict'
 
 module.exports = {
-  database: {
-    dialectOptions: {
-      ssl: { 
-        require: true,
-        rejectUnauthorized: false,            
-      }
-    }
-  }
+//   database: {
+//     dialectOptions: {
+//       ssl: { 
+//         require: true,
+//         rejectUnauthorized: false,            
+//       }
+//     }
+//   }
 }
