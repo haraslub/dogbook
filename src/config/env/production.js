@@ -3,7 +3,10 @@
 module.exports = {
   database: {
     dialectOptions: {
-      ssl: true,
+      ssl: { 
+        require: true,
+        rejectUnauthorized: false,            
+      }
     }
   }
 }
