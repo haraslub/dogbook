@@ -51,8 +51,9 @@ module.exports = env => ({
     //   database: 'nodejs-nights-local', user: 'postgres', password: 'password1234!',
     // },
     // OR:
-    connection: process.env.DATABASE_URL
-      || 'postgres://postgres:password1234!@localhost:5432/nodejs-nights-local',
+    connection: {
+      connectionString: process.env.DATABASE_URL || 'postgres://postgres:password1234!@localhost:5432/nodejs-nights-local',
+    },
     pool: {
       min: process.env.DATABASE_POOL_MIN || 0,
       max: process.env.DATABASE_POOL_MAX || 5,
