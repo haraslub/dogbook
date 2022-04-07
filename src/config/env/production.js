@@ -1,7 +1,9 @@
 'use strict'
 
 module.exports = {
-  ssl: {
-    rejectUnauthorized: false
+  database: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
   }
 }
