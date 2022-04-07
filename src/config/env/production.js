@@ -2,8 +2,8 @@
 
 module.exports = {
   database: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    dialectOptions: {
+      ssl: true,
+    }
   }
 }
