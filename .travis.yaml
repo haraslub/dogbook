@@ -1,0 +1,52 @@
+---
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - 11.0.0
+
+ branches:
+  only:
+    - main
+
+cache:
+  directories:
+    - node_modules
+
+services:
+  - docker
+
+env:
+  global:
+    - NODE_ENV=local # should be TEST!
+
+install:
+  - npm install
+
+before_script:
+  - sudo services postgresql stop
+  - docker ps
+  - npm run infra
+  - sleep 5
+  - npm run db:migrate
+
+script:
+  - npm run test:coverage
+
+after_success:
+  - echo Upload code coverage # homework
+
+notifications:
+  - email: false
+
+deploy:
+  - provider: heroku
+    skip_cleanup: true
+    api_key:
+      secure: "..."
+    app: dogbook2022
+    strategy: git
+    on:
+      branch:
+        - 07-deployment
+      repo: haraslub/dogbook
