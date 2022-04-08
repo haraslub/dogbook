@@ -42,7 +42,8 @@ notifications:
 deploy:
   - provider: heroku
     skip_cleanup: true
-    api_key: $HEROKU_API_KEY
+    api_key:
+      - secure: 'qk+hXh9Z/0ncRWcMoA/BuDYeOPoB53MfR+rjyPudbU/S13O+OhuPKhdOEsEq18U8gYnFH9FV0OpmCXa6LiTxvhtjIMV7Q4SW4Hu0Eq+7OLbY6NVeprdK1AVYu8vyKBqKegx79EzQmCh8+JxLWwMcmNmDf6bO38kcjwNSb6MpzGgZsmlS3McGGKxsF9I8pzBx15cD6BEPGqNBXMKY7nUHXIi2uw6k36ZEdlGl1oHV/MCMfJLBv0ny6+/QENZb+uUFhBcVnVvghIwzDVQzNsQVB6duKHcdCVw+3x5PAuP/RFFkOzRxHmPRcSKQChDyhxvjkbB9idTYjZSFs2HkEInAryHgwS0o0abGoXCkwgwgmGvTE/pMPCgPYawZJebnjGT0yxZePv+Do5+fn7F9Wj6phpKiOSq55ZmcJlIyJ/gz2OpglhEtGaIsnKg80txfltfhCgnQdtEbNcxd4Ck6cF5ErCsW0lNCdcgpSYiJoaUzDs4CJ/VEUKovnYEIGI0y0LRZHYxkhHq+vC7GFIq2lcASI7phd7a0SmSWzwd9gAqUQSVNSXEYC0AyiplW9ur/Rqlp05eUoUizATlGPnf3wpbAuXYzZHlCXZSop2Is/J2DDbE8Zz0GR9bqnsie758WAQ6b9u6Wm2EjB+pNej5CWhcvAVfFu2wnAfOF1eaFkFNZqbo='
     app: dogbook2022
     strategy: git
     on:
