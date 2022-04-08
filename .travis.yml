@@ -24,7 +24,7 @@ install:
   - npm install
 
 before_script:
-  - sudo services postgresql stop
+  - sudo service postgresql stop
   - docker ps
   - npm run infra
   - sleep 5
