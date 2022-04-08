@@ -5,7 +5,7 @@ language: node_js
 node_js:
   - 14.0.0
 
- branches:
+branches:
   only:
     - 07-deployment
 
