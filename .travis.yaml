@@ -7,7 +7,7 @@ node_js:
 
  branches:
   only:
-    - main
+    - 07-deployment
 
 cache:
   directories:
@@ -28,7 +28,7 @@ before_script:
   - docker ps
   - npm run infra
   - sleep 5
-  - npm run db:migrate
+  - npm run db:migrate:deploy # should be without :deploy (but test env does not work yet)
 
 script:
   - npm run test:coverage
@@ -43,7 +43,7 @@ deploy:
   - provider: heroku
     skip_cleanup: true
     api_key:
-      secure: "..."
+      secure: "fmxODeKx8dBs2qlD5Z8VqnisGQipaRkAzp35xKh+h+TnnR6yBIdmDKdrr+Jgtxs2SPXyiXHeygiJ18dL7Oe5s5enkvICK3IzR18tGBn1EMtujGUOXkODLfNzy6RIGaeMVPM5KtUyDcr7mgyPmGI/58WSReS7PMoo5ixw2gjDejAzJZBFqauXQE6Fj8izC6X16W+Qs3KQP61R71eHHX2/NHtoGohwu5Mflm/yO2ki+I3STt6zwKy4cg1qd+RYXYDCVS6sBlzPI4tYK2+JlCn8TfSJiL8Nrycp2jUjsKh0IbOWcH51DS4lVvZBxj4spzm+GHcZdRS9wwtRnbMbuEJ8yxvcuntasTJvKD0xAh+EQ1mjaJTgDtiOY73dZ8ovWwzVF5T6hPclUytkAgzYxohocb4GzgJ3gxWKPNTCPV4NpeVO9iywsayFXTwuyXZYqBiQcoYQMPk/+HvWDazOyFjyE4D5XcU9/x9CzXq/Fw1wwjOAc9t68PT5xDbPz0NBOF9IQXH1wcQBjzHC+MyeS0ZCX1XVJFl3aBGUj0iEajtZ/s66gMUpn3ebZ4cEz+cahnIdt0V/u0Udmc99B3ASmelx1I2HfqONxwU3d4MszcX3fZDioundXlCoTh403Jm1EAIbNxIUnSKzngnWUW4rsTVhbLmb/GpsZCALbwVYQmtLZfE="
     app: dogbook2022
     strategy: git
     on:
