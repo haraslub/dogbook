@@ -53,6 +53,7 @@ module.exports = env => ({
     // OR:
     connection: {
       connectionString: process.env.DATABASE_URL || 'postgres://postgres:password1234!@localhost:5432/nodejs-nights-local',
+      ssl: process.env.DATABASE_URL ? true : false,
     },
     pool: {
       min: process.env.DATABASE_POOL_MIN || 0,
