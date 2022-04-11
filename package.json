@@ -1,7 +1,7 @@
 {
   "name": "dogbook",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dogbook API",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=local npx mocha --config ./tests/.mocharc.yaml ./tests",
