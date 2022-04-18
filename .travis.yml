@@ -35,6 +35,7 @@ script:
 
 after_success:
   - echo Upload code coverage # homework
+  - npm run test:upload
 
 notifications:
   - email: false

@@ -6,6 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=local npx mocha --config ./tests/.mocharc.yaml ./tests",
     "test:coverage": "NODE_ENV=local npx nyc mocha --config ./tests/.mocharc.yaml ./tests",
+    "test:upload": "NODE_ENV=local npx nyc --reporter=lcov mocha && codecov",
+    "report-test": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "start": "node src/app.js",
     "lint": "node_modules/.bin/eslint ./",
     "dev": "nodemon src/app.js | pino-pretty",
@@ -21,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "codecov": "^3.8.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
@@ -36,7 +39,6 @@
     "objection": "^3.0.1",
     "pg": "^8.7.3",
     "pino": "^7.9.2",
-    "pino-pretty": "^7.5.3",
     "ramda": "^0.28.0"
   },
   "devDependencies": {
@@ -44,6 +46,7 @@
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
+    "pino-pretty": "^7.5.3",
     "sinon": "^13.0.1",
     "supertest-koa-agent": "^0.3.2"
   }
