@@ -60,4 +60,7 @@ module.exports = env => ({
       max: process.env.DATABASE_POOL_MAX || 5,
     },
   },
+  jobs: {
+    redisUrl: process.env.REDIS_URL || 'redis://127.0.0.1:6379'
+  }
 })
