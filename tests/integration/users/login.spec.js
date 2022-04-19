@@ -52,6 +52,7 @@ describe('Users', () => {
         // NOTE: async function needs to be wrapped into try/catch
         try {
           await verifyTokenPayload(user)
+
         } catch (err) {
           expect(err.name).to.equal('UnauthorizedError')
           expect(err.message).to.equal('Site access denied.')

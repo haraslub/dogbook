@@ -1,0 +1,7 @@
+build:
+  docker:
+    web: Dockerfile
+release:
+  command:
+    - npm run db:migrate:deploy
+  image: web

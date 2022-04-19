@@ -5,7 +5,7 @@ language: node_js
 node_js:
   - 14.0.0
 
- branches:
+branches:
   only:
     - 07-deployment
 
@@ -24,7 +24,7 @@ install:
   - npm install
 
 before_script:
-  - sudo services postgresql stop
+  - sudo service postgresql stop
   - docker ps
   - npm run infra
   - sleep 5
@@ -35,6 +35,7 @@ script:
 
 after_success:
   - echo Upload code coverage # homework
+  - npm run test:upload
 
 notifications:
   - email: false
@@ -43,7 +44,7 @@ deploy:
   - provider: heroku
     skip_cleanup: true
     api_key:
-      secure: "fmxODeKx8dBs2qlD5Z8VqnisGQipaRkAzp35xKh+h+TnnR6yBIdmDKdrr+Jgtxs2SPXyiXHeygiJ18dL7Oe5s5enkvICK3IzR18tGBn1EMtujGUOXkODLfNzy6RIGaeMVPM5KtUyDcr7mgyPmGI/58WSReS7PMoo5ixw2gjDejAzJZBFqauXQE6Fj8izC6X16W+Qs3KQP61R71eHHX2/NHtoGohwu5Mflm/yO2ki+I3STt6zwKy4cg1qd+RYXYDCVS6sBlzPI4tYK2+JlCn8TfSJiL8Nrycp2jUjsKh0IbOWcH51DS4lVvZBxj4spzm+GHcZdRS9wwtRnbMbuEJ8yxvcuntasTJvKD0xAh+EQ1mjaJTgDtiOY73dZ8ovWwzVF5T6hPclUytkAgzYxohocb4GzgJ3gxWKPNTCPV4NpeVO9iywsayFXTwuyXZYqBiQcoYQMPk/+HvWDazOyFjyE4D5XcU9/x9CzXq/Fw1wwjOAc9t68PT5xDbPz0NBOF9IQXH1wcQBjzHC+MyeS0ZCX1XVJFl3aBGUj0iEajtZ/s66gMUpn3ebZ4cEz+cahnIdt0V/u0Udmc99B3ASmelx1I2HfqONxwU3d4MszcX3fZDioundXlCoTh403Jm1EAIbNxIUnSKzngnWUW4rsTVhbLmb/GpsZCALbwVYQmtLZfE="
+      - secure: 'qk+hXh9Z/0ncRWcMoA/BuDYeOPoB53MfR+rjyPudbU/S13O+OhuPKhdOEsEq18U8gYnFH9FV0OpmCXa6LiTxvhtjIMV7Q4SW4Hu0Eq+7OLbY6NVeprdK1AVYu8vyKBqKegx79EzQmCh8+JxLWwMcmNmDf6bO38kcjwNSb6MpzGgZsmlS3McGGKxsF9I8pzBx15cD6BEPGqNBXMKY7nUHXIi2uw6k36ZEdlGl1oHV/MCMfJLBv0ny6+/QENZb+uUFhBcVnVvghIwzDVQzNsQVB6duKHcdCVw+3x5PAuP/RFFkOzRxHmPRcSKQChDyhxvjkbB9idTYjZSFs2HkEInAryHgwS0o0abGoXCkwgwgmGvTE/pMPCgPYawZJebnjGT0yxZePv+Do5+fn7F9Wj6phpKiOSq55ZmcJlIyJ/gz2OpglhEtGaIsnKg80txfltfhCgnQdtEbNcxd4Ck6cF5ErCsW0lNCdcgpSYiJoaUzDs4CJ/VEUKovnYEIGI0y0LRZHYxkhHq+vC7GFIq2lcASI7phd7a0SmSWzwd9gAqUQSVNSXEYC0AyiplW9ur/Rqlp05eUoUizATlGPnf3wpbAuXYzZHlCXZSop2Is/J2DDbE8Zz0GR9bqnsie758WAQ6b9u6Wm2EjB+pNej5CWhcvAVfFu2wnAfOF1eaFkFNZqbo='
     app: dogbook2022
     strategy: git
     on:

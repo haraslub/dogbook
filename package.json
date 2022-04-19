@@ -1,14 +1,15 @@
 {
   "name": "dogbook",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Dogbook API",
+  "main": "src/app.js",
   "scripts": {
     "test": "NODE_ENV=local npx mocha --config ./tests/.mocharc.yaml ./tests",
     "test:coverage": "NODE_ENV=local npx nyc mocha --config ./tests/.mocharc.yaml ./tests",
+    "report-test": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "start": "node src/app.js",
     "lint": "node_modules/.bin/eslint ./",
-    "dev": "nodemon src/app.js | pino-pretty",
+    "dev": "nodemon --watch src --ext js --exec \"nf start -j Procfile.dev\" | pino-pretty",
     "infra": "docker-compose up -d",
     "infra:stop": "docker-compose down",
     "db:migrate": "NODE_ENV=local npx knex migrate:latest --knexfile ./src/databases/knexfile.js",
@@ -21,6 +22,8 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "bull": "^4.8.1",
+    "codecov": "^3.8.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
@@ -36,14 +39,15 @@
     "objection": "^3.0.1",
     "pg": "^8.7.3",
     "pino": "^7.9.2",
-    "pino-pretty": "^7.5.3",
     "ramda": "^0.28.0"
   },
   "devDependencies": {
     "chai": "^4.3.6",
+    "foreman": "^3.0.1",
     "mocha": "^9.2.2",
     "nodemon": "^2.0.15",
     "nyc": "^15.1.0",
+    "pino-pretty": "^7.5.3",
     "sinon": "^13.0.1",
     "supertest-koa-agent": "^0.3.2"
   }

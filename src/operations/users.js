@@ -78,7 +78,7 @@ async function verifyTokenPayload(input) {
   const now = Date.now() // in mil seconds
 
   if (!jwtPayload || !jwtPayload.exp || now >= (jwtPayload.exp * 1000)) {
-    throw new errors.UnauthorizedError('jwtPayload')
+    throw new errors.UnauthorizedError('Site access denied.')
   }
 
   // check if user is in databases and is not disabled

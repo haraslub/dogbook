@@ -8,8 +8,6 @@ node_modules
 .DS_Store
 .nyc_output
 coverage
-codecov
-coverage.lcov
 
 # IDE stuff
 .netbeans
