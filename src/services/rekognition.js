@@ -42,6 +42,9 @@ module.exports = {
     log.info(`photoUrl: ${photoUrl}`)
 
     const labelsResponse = await getLabels(photoUrl)
+
+    // It never passes the getLabels function, thus the following lines are not executed.
+
     log.info(`labelsResponse: ${labelsResponse}`)
 
     const dogLabel = R.find(R.propEq(PROP_NAME, PROP_VALUE))(labelsResponse.Labels)
