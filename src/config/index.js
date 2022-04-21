@@ -17,6 +17,4 @@ const defaultConfig = require('./default')(env)
 // Override default values with values from env config
 const resultConfig = R.mergeDeepRight(defaultConfig, envConfig)
 
-module.exports = {
-  resultConfig,
-}
+module.exports = resultConfig

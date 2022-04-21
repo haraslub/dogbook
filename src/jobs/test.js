@@ -5,7 +5,7 @@ const config = require('../config')
 const log = require('../utils/logger')
 
 const queue = new Bull('test', {
-  redis: config.resultConfig.jobs.redisUrl
+  redis: config.jobs.redisUrl
 })
 
 const execute = () => {

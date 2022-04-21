@@ -4,7 +4,7 @@ const url = require('url')
 const AWS = require('aws-sdk')
 const Bluebird = require('bluebird')
 const R = require('ramda')
-const awsConfig = require('../config').resultConfig.aws
+const awsConfig = require('../config').aws
 const log = require('../utils/logger')
 
 const rekognition = new AWS.Rekognition()

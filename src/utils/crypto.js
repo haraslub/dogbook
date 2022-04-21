@@ -13,13 +13,13 @@ module.exports = {
 
   generateAccessToken(userId) {
     const payload = { userId }
-    return jwtSign(payload, config.resultConfig.auth.secret, config.resultConfig.auth.createOptions)
+    return jwtSign(payload, config.auth.secret, config.auth.createOptions)
   },
 
   async verifyAccessToken(accessToken) {
     try {
       // Don't return directly for catch block to work properly
-      const data = await jwtVerify(accessToken, config.resultConfig.auth.secret, config.resultConfig.auth.verifyOptions)
+      const data = await jwtVerify(accessToken, config.auth.secret, config.auth.verifyOptions)
       return data
       
     } catch(err) {
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   hashPassword(password) {
-    return bcrypt.hash(peperify(password), config.resultConfig.auth.saltRounds)
+    return bcrypt.hash(peperify(password), config.auth.saltRounds)
   },
 
   comparePasswords(plaintext, cipheredText) {
@@ -42,5 +42,5 @@ module.exports = {
 }
 
 function peperify(password) {
-  return crypto.createHmac('sha1', config.resultConfig.auth.secret).update(password).digest('hex')
+  return crypto.createHmac('sha1', config.auth.secret).update(password).digest('hex')
 }

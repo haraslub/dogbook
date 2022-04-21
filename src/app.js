@@ -28,7 +28,7 @@ app.start = async () => {
   // start my services here
 
   services.server = await new Promise((resolve, reject) => {
-    const listen = app.listen(config.resultConfig.server.port, err => err ? reject(err) : resolve(listen))
+    const listen = app.listen(config.server.port, err => err ? reject(err) : resolve(listen))
   })
 }
 
