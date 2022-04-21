@@ -39,6 +39,8 @@ async function createDog(input) {
     input.photo = await dogApi.getRandomBreedImage(input.breed)
   }
 
+  console.log(input)
+
   const dog = await dogRepository.create(input)
 
   verificationJob.add(dog.id, input.photo)

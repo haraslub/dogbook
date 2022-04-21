@@ -7,7 +7,7 @@ const crypto = require('../utils/crypto')
 
 async function signUp(input) {
   // should not be in production environment as password is going to be printed into console!
-  log.info({ input }, 'signUp') 
+  log.info({ name: input.name, email: input.email, }, 'signUp') 
     
   const user = {
     name: input.name,
@@ -37,7 +37,7 @@ async function signUp(input) {
 }
 
 async function logIn(input) {
-  log.info({ input }, 'logIn')
+  log.info({ email: input.email, }, 'logIn')
 
   const user = {
     email: input.email,
@@ -70,7 +70,7 @@ async function logIn(input) {
 
 async function verifyTokenPayload(input) {
   // do not use logging of sensitive data in production!!! 
-  log.info({ input }, 'verifyTokenPayload')
+  log.info('verifyTokenPayload')
   
   const jwtToken = input.jwtToken || input.accessToken // not ideal
   // check if payload exists and login timeout has not expired yet

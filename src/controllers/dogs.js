@@ -26,6 +26,8 @@ async function createDog(ctx) {
   }
 
   validate(schemas.dog, input)
+
+  input.userId = ctx.state.user.id
   
   const response = await operations.createDog(input)
   ctx.status = 201
