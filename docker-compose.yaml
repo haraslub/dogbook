@@ -1,6 +1,5 @@
 version: '3.3'
 services:
-
   database:
     image: sameersbn/postgresql:latest
     container_name: nodejs-nights-db
@@ -14,4 +13,4 @@ services:
     image: redis
     container_name: nodejs-nights-redis
     ports:
-      - "6379:6379"
+      - '6379:6379'

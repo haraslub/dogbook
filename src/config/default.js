@@ -62,5 +62,13 @@ module.exports = env => ({
   },
   jobs: {
     redisUrl: process.env.REDIS_URL || 'redis://127.0.0.1:6379'
-  }
+  },
+  aws: {
+    s3: {
+      bucketName: process.env.AWS_S3_BUCKET_NAME,
+    },
+    rekognition: {
+      minConfidence: 90,
+    },
+  },
 })

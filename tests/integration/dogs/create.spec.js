@@ -8,6 +8,7 @@ const app = require('../../../src/app')
 const dogsRepo = require('../../../src/repositories/dogs')
 const { resetDb } = require('../../helpers')
 const dogApi = require('../../../src/services/dogApi')
+const rekognition = require('../../../src/services/rekognition')
 
 const sandbox = sinon.createSandbox()
 
@@ -38,6 +39,8 @@ describe('Dogs', () => {
       
       sandbox.stub(dogApi, 'getRandomBreedImage').returns(Promise.resolve('https://mydogapi.io/breed/random'))
       // console.log(`\nCreating user successful\nJWT token ${userToken}`)
+
+      sandbox.stub(rekognition, 'isDogRecognized').returns(Promise.resolve(true))
     })
 
     afterEach(() => sandbox.restore())
@@ -50,7 +53,7 @@ describe('Dogs', () => {
         birthYear: 2000,
       }
 
-      sinon.mock(dogApi)
+      // sinon.mock(dogApi)
       
       const res = await request(app)
         .post('/dogs')
@@ -78,6 +81,7 @@ describe('Dogs', () => {
         'userId',
         'photo',
         'id',
+        'photoVerified',
       ])
 
       const allDogs = await dogsRepo.getAll()

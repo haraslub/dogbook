@@ -1,15 +1,18 @@
 'use strict'
 
 const log = require('./utils/logger')
+const verificationJob = require('./jobs/verification')
 
 const worker = {}
 
 worker.start = () => {
-  log.info('Starting worker')
+  log.info('Starting a worker')
+
+  verificationJob.execute()
 }
 
 worker.stop = () => {
-  log.info('Stopping worker')
+  log.info('Stopping a worker')
 }
 
 if (require.main === module) {

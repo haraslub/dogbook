@@ -16,13 +16,18 @@ async function findById(id) {
   return dog
 }
 
-async function createDog(dogAttributes) {
+async function create(dogAttributes) {
   const dog = await Dog.query().insertAndFetch(dogAttributes)
   return dog
+}
+
+function patchById(id, attributes) {
+  return Dog.query().patch(id, attributes)
 }
 
 module.exports = {
   getAll,
   findById,
-  createDog,
+  create,
+  patchById,
 }
