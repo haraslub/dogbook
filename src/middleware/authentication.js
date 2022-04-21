@@ -20,8 +20,6 @@ async function authenticate(ctx, next) {
 
   // validate users jwtToken to be sure it 
   const input = { jwtToken: parsedHeader.value}
-  // console.log(`\nAuthentication/authenticate: input.jwtToken=${input.jwtToken}`)
-  console.log(`\nAuthentication/authenticate: input.jwtToken=${input}`)
   validate(schemas.jwtToken, input)
 
   // verify login timeout expiration and user + set it to the header
@@ -32,6 +30,7 @@ async function authenticate(ctx, next) {
 
   // set state which we got from out operation
   ctx.state.user = data.user
+
   return next() // to allow to the next middleware use ctx.state.user
 }
 

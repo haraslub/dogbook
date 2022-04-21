@@ -7,9 +7,8 @@ exports.up = function(knex) {
     table.string('breed').notNullable()
     table.integer('birth_year').notNullable()
     table.string('photo')
-    // table.integer('user_id').notNullable().references('id').inTable('users')
     table.integer('user_id')
-    table.foreign('user_id').references('users.id').onDelete('CASCADE')
+    table.foreign('user_id').references('id').inTable('users').onDelete('CASCADE')
     table.timestamps(true, true)
   })
 }

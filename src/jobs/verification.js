@@ -7,7 +7,7 @@ const rekognition = require('../services/rekognition')
 const dogOperations = require('../operations/dogs')
 
 const queue = new Bull('Image verification', {
-  redis: config.resultConfig.jobs.redisUrl
+  redis: config.jobs.redisUrl
 })
 
 const execute = () => {
