@@ -12,6 +12,6 @@ module.exports = {
       .filter(tableName => !ignoreTableNames.includes(tableName))
       .map(tableName => `"${tableName}"`)
 
-    return knex.raw(`TRUNCATE ${tableNames.join()} RESTART IDENTITY CASCADE`)
+    return await knex.raw(`TRUNCATE ${tableNames.join()} RESTART IDENTITY CASCADE`)
   }
 }

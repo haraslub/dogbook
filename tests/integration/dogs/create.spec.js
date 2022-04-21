@@ -22,7 +22,7 @@ describe('Dogs', () => {
   }
   // console.log('\ndb reset successful')
 
-  context('POST /dogs', () => {
+  context('POST and GET /dogs', () => {
 
     let userToken
 
@@ -45,7 +45,7 @@ describe('Dogs', () => {
 
     afterEach(() => sandbox.restore())
 
-    it('responds with newly created dog + test getters', async () => {
+    it('POST and GET: responds with newly created dog, get all dogs, get a dog by ID', async () => {
 
       const dogData = {
         name: 'Azor',
@@ -97,7 +97,6 @@ describe('Dogs', () => {
         expect(err.message).to.equal('Dog has not been found.')
       }
     })
-
 
     it('spy the dogApi', async () => {
       sandbox.restore()
