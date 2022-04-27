@@ -8,6 +8,7 @@ const koaHelmet = require('koa-helmet')
 const router = require('./routes')
 const config = require('./config')
 const log = require('./utils/logger')
+const { addGraphQLServer } = require('./graphql')
 
 const services = {
   server: null,
@@ -15,15 +16,19 @@ const services = {
 
 const app = new Koa()
 
-app.use(koaHelmet())
+app.use(koaHelmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }))
 app.use(koaCompress())
 app.use(koaCors())
 app.use(koaBody())
 
 app.use(router)
 
+addGraphQLServer(app)
+
 app.start = async () => {
   log.info('Starting app...')
+
+  // addGraphQLServer(app)
 
   // start my services here
 
