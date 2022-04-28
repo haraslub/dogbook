@@ -4,8 +4,11 @@ type Dog {
   breed: String!
   birthYear: Int!
   photo: String
+
+  user: User
 }
 
 type Query {
   dogs: [Dog]
+  dog(id: Int!): Dog
 }

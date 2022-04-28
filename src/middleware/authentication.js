@@ -4,15 +4,10 @@ const operations = require('../operations/users')
 const { validate } = require('../validations')
 const schemas = require('../validations/schemas/users')
 
-async function authenticate(ctx, next) {
-  // throwing a regular error if no context - this should never happen; if error is thrown we misused the code
-  if (!ctx) {
-    throw new Error('Context has to be defined!')
-  }
-	
+async function getAuthPayload(authorization) {
   // get header value and check it otherwise
   // return null if parsedHeader does not meet conditions as it might be used in processes without authentication required
-  const parsedHeader = await parseHeader(ctx.header.authorization)
+  const parsedHeader = await parseHeader(authorization)
   if (!parsedHeader || !parsedHeader.scheme || !parsedHeader.value
 		|| parsedHeader.scheme.toLowerCase() !== 'jwt') {
     return null
@@ -24,6 +19,21 @@ async function authenticate(ctx, next) {
 
   // verify login timeout expiration and user + set it to the header
   const data = await operations.verifyTokenPayload(input)
+
+  return data
+}
+
+async function authenticate(ctx, next) {
+  // throwing a regular error if no context - this should never happen; if error is thrown we misused the code
+  if (!ctx) {
+    throw new Error('Context has to be defined!')
+  }
+
+  const data = await getAuthPayload(ctx.header.authorization)
+  if (!data) {
+    return null
+  }
+	
   if (ctx.response && data.loginTimeout) {
     ctx.set('Login-timeout', data.loginTimeout) // common way how to set response header field to value
   }
@@ -47,4 +57,5 @@ function parseHeader(hdrValue) {
 
 module.exports = {
   authenticate,
+  getAuthPayload,
 }
