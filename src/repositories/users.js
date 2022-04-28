@@ -7,6 +7,11 @@ function findAll() {
   return User.query()
 }
 
+/**
+ * Find an user by id
+ * @param {Number} id User id 
+ * @returns {Promise<User>}
+ */
 async function findById(id) {
   const user = await User.query().findById(id)
 	
@@ -14,6 +19,16 @@ async function findById(id) {
     throw new errors.NotFoundError()
   }
   return user
+}
+
+/**
+ * 
+ * @param {Number[]} ids User ids 
+ * @returns {Promise<User>}
+ */
+async function findByIds(ids) {
+  return User.query()
+    .where('id', 'in', ids)
 }
 
 async function findByEmail(email) {
@@ -53,6 +68,7 @@ async function updateUser(userId, attributes) {
 module.exports = {
   findAll,
   findById,
+  findByIds,
   findByEmail,
   create,
   updateUser,
