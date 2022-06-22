@@ -24,7 +24,7 @@
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.10",
-    "apollo-server-core": "^3.6.7",
+    "apollo-server-core": "^3.9.0",
     "apollo-server-koa": "^3.6.7",
     "aws-sdk": "^2.1117.0",
     "bcrypt": "^5.0.1",
