@@ -45,7 +45,7 @@
     "koa-compress": "^5.1.0",
     "koa-helmet": "^6.1.0",
     "koa-router": "^10.1.1",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.10",
     "objection": "^3.0.1",
     "pg": "^8.7.3",
     "pino": "^7.9.2",
