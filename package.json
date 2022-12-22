@@ -37,7 +37,7 @@
     "eslint": "^8.10.0",
     "graphql": "^16.4.0",
     "jsonschema": "^1.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "kcors": "^2.2.2",
     "knex": "^1.0.4",
     "koa": "^2.13.4",
