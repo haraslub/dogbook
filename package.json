@@ -35,7 +35,7 @@
     "dataloader": "^2.1.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
-    "graphql": "^16.4.0",
+    "graphql": "^16.8.1",
     "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "kcors": "^2.2.2",
