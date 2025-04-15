@@ -40,7 +40,7 @@
     "jsonwebtoken": "^8.5.1",
     "kcors": "^2.2.2",
     "knex": "^1.0.4",
-    "koa": "^2.13.4",
+    "koa": "^2.16.1",
     "koa-body": "^4.2.0",
     "koa-compress": "^5.1.0",
     "koa-helmet": "^6.1.0",
