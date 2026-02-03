@@ -27,7 +27,7 @@
     "apollo-server-core": "^3.6.7",
     "apollo-server-koa": "^3.6.7",
     "aws-sdk": "^2.1117.0",
-    "bcrypt": "^5.0.1",
+    "bcrypt": "^6.0.0",
     "bluebird": "^3.7.2",
     "bull": "^4.8.1",
     "codecov": "^3.8.3",
